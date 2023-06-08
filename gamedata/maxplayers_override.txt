@@ -1,0 +1,74 @@
+"Games"
+{
+	"left4dead"
+	{
+		"Offsets"
+		{
+			"CGameRules::GetMaxHumanPlayers"
+			{
+				"windows"	"131"
+				"linux"		"132"
+			}
+
+			"CMatchTitle::GetTotalNumPlayersSupported"
+			{
+				"windows"	"4"
+				"linux"		"4"
+			}
+
+			"CMultiplayRules::ClientDisconnected"
+			{
+				"windows"	"57"
+				"linux"		"58"
+			}
+		}
+
+		"Signatures"
+		{
+			"CBaseServer::SetReservationCookie"
+			{
+				"library"	"engine"
+				"windows"	"\x81\xEC\x04\x01\x00\x00\x55\x8B\xAC\x24\x14\x01\x00\x00"
+				// 81 EC 04 01 00 00 55 8B AC 24 14 01 00 00
+
+				"linux"		"@_ZN11CBaseServer20SetReservationCookieEyPKcz"
+			}
+		}
+	}
+
+	"left4dead2"
+	{
+		"Offsets"
+		{
+			"CGameRules::GetMaxHumanPlayers"
+			{
+				"windows"	"136"
+				"linux"		"137"
+			}
+
+			"CMatchTitle::GetTotalNumPlayersSupported"
+			{
+				"windows"	"4"
+				"linux"		"4"
+			}
+
+			"CMultiplayRules::ClientDisconnected"
+			{
+				"windows"	"57"
+				"linux"		"58"
+			}
+		}
+
+		"Signatures"
+		{
+			"CBaseServer::SetReservationCookie"
+			{
+				"library"	"engine"
+				"windows"	"\x55\x8B\xEC\x81\xEC\x08\x01\x00\x00\xA1\x2A\x2A\x2A\x2A\x33\xC5\x89\x45\xFC\x53\x8B\x5D\x10"
+				// 55 8B EC 81 EC 08 01 00 00 A1 ? ? ? ? 33 C5 89 45 FC 53 8B 5D 10
+
+				"linux"		"@_ZN11CBaseServer20SetReservationCookieEyPKcz"
+			}
+		}
+	}
+}
