@@ -123,7 +123,7 @@ bool CMaxPlayersOverrideExt::SDK_OnLoad(char *error, size_t maxlen, bool late)
 	sharesys->AddDependency(myself, "bintools.ext", true, true);
 	sharesys->AddDependency(myself, "imatchext.ext", true, true);
 
-	SH_ADD_HOOK(IServerGameDLL, ApplyGameSettings, gamedll, SH_MEMBER(this, &CMaxPlayersOverrideExt::ApplyGameSettings), true);
+	SH_ADD_HOOK(IServerGameDLL, ApplyGameSettings, gamedll, SH_MEMBER(this, &CMaxPlayersOverrideExt::ApplyGameSettings), false);
 	SH_ADD_HOOK(IServerGameDLL, ServerHibernationUpdate, gamedll, SH_MEMBER(this, &CMaxPlayersOverrideExt::ServerHibernationUpdate), false);
 
 	sv_allow_lobby_connect_only = g_pCVar->FindVar("sv_allow_lobby_connect_only");
@@ -141,13 +141,11 @@ void CMaxPlayersOverrideExt::SDK_OnUnload()
 	ConVarData *pConVarData = reinterpret_cast<ConVarData *>(sv_allow_lobby_connect_only)->m_pParent;
 	pConVarData->m_fnChangeCallback = nullptr;
 
-	SH_REMOVE_HOOK(IServerGameDLL, ApplyGameSettings, gamedll, SH_MEMBER(this, &CMaxPlayersOverrideExt::ApplyGameSettings), true);
+	SH_REMOVE_HOOK(IServerGameDLL, ApplyGameSettings, gamedll, SH_MEMBER(this, &CMaxPlayersOverrideExt::ApplyGameSettings), false);
+	SH_REMOVE_HOOK(IServerGameDLL, ServerHibernationUpdate, gamedll, SH_MEMBER(this, &CMaxPlayersOverrideExt::ServerHibernationUpdate), false);
 
 	SH_REMOVE_HOOK_ID(m_nSHookID_CMatchTitle_GetTotalNumPlayersSupported);
 	m_nSHookID_CMatchTitle_GetTotalNumPlayersSupported = -1;
-
-	SH_REMOVE_HOOK_ID(m_nSHookID_CMatchTitleGameSettingsMgr_InitializeGameSettings);
-	m_nSHookID_CMatchTitleGameSettingsMgr_InitializeGameSettings = -1;
 
 	CleanupGameRulesHooks();
 }

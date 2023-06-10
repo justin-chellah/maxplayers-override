@@ -102,7 +102,6 @@ private:
 	int m_nSHookID_CGameRules_GetMaxHumanPlayers = -1;
 	int m_nSHookID_CMultiplayRules_ClientDisconnected = -1;
 	int m_nSHookID_CMatchTitle_GetTotalNumPlayersSupported = -1;
-	int m_nSHookID_CMatchTitleGameSettingsMgr_InitializeGameSettings = -1;
 
 	int GetMaxPlayersOverrideCmdLineValue() const;
 	int CountHumanPlayers() const;
