@@ -71,7 +71,7 @@ bool CMaxPlayersOverrideExt::SDK_OnLoad(char *error, size_t maxlen, bool late)
 
 	if (!pGameConfig->GetOffset("CMultiplayRules::ClientDisconnected", &iVtbl_CMultiplayRules_ClientDisconnected))
 	{
-		ke::SafeStrcpy(error, maxlen, "Unable to find gamedata offset entry for \"CMultiplayRules::GetMaxHumanPlayers\"");
+		ke::SafeStrcpy(error, maxlen, "Unable to find gamedata offset entry for \"CMultiplayRules::ClientDisconnected\"");
 
 		gameconfs->CloseGameConfigFile(pGameConfig);
 
@@ -404,6 +404,8 @@ void CMaxPlayersOverrideExt::ApplyGameSettings(KeyValues *pRequest)
 
 void CMaxPlayersOverrideExt::ServerHibernationUpdate(bool bHibernating)
 {
+	SET_META_RESULT(MRES_IGNORED);
+
 	if (bHibernating)
 	{
 		// Revert only if the server operator had changed this cvar beforehand
@@ -418,6 +420,8 @@ void CMaxPlayersOverrideExt::ServerHibernationUpdate(bool bHibernating)
 // not to mention game SDK does it the same way
 void CMaxPlayersOverrideExt::ClientDisconnected(edict_t *pClient)
 {
+	SET_META_RESULT(MRES_IGNORED);
+
 	// Revert only if the server operator had changed this cvar beforehand
 	if (!g_bAllowLobbyConnectOnly)
 	{
